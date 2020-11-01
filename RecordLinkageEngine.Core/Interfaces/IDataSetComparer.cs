@@ -7,6 +7,6 @@ namespace RecordLinkageEngine.Core.Interfaces
 {
     public interface IDataSetComparer
     {
-        ResultData CompareData(InputDataSet dataSetOne, InputDataSet dataSetTwo);
+        ResultDataSet CompareData(InputDataSet dataSetOne, InputDataSet dataSetTwo);
     }
 }

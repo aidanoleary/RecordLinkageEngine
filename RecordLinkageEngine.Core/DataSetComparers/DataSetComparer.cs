@@ -4,6 +4,7 @@ using RecordLinkageEngine.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RecordLinkageEngine.Core.DataSetComparers
 {
@@ -22,9 +23,50 @@ namespace RecordLinkageEngine.Core.DataSetComparers
             this.attributeComparers.Add(typeof(string), new StringAttributeComparer());
         }
 
-        public ResultData CompareData(InputDataSet dataSetOne, InputDataSet dataSetTwo)
+        public ResultDataSet CompareData(InputDataSet dataSetOne, InputDataSet dataSetTwo)
         {
-            throw new NotImplementedException();
+            ResultDataSet resultDataSet = new ResultDataSet();
+
+            Parallel.ForEach(dataSetOne.DataRows, (dataSetOneRow) =>
+            {
+                foreach(DataRow dataSetTwoRow in dataSetTwo.DataRows)
+                {
+                    ResultData resultData = CompareAttributes(dataSetOneRow.DataAttributes, dataSetTwoRow.DataAttributes);
+                    resultDataSet.ResultDataList.Add(resultData);
+                }
+            });
+
+            return resultDataSet;
+        }
+
+        private ResultData CompareAttributes(List<DataAttribute> attributeSetOne, List<DataAttribute> attributeSetTwo)
+        {
+            ResultData resultData = new ResultData();
+
+            foreach(DataAttribute firstAttribute in attributeSetOne)
+            {
+                foreach(DataAttribute secondAttribute in attributeSetTwo)
+                {
+                    if (firstAttribute.DataType != secondAttribute.DataType)
+                    {
+                        throw new Exception($"Attributes {firstAttribute.DataValue} and {secondAttribute.DataValue} do not have the same data types");
+                    }
+
+                    IAttributeComparer comparer = attributeComparers[firstAttribute.DataType];
+                    double comparisonScore = comparer.CompareAttributes(firstAttribute, secondAttribute);
+
+                    ResultDataAttribute attribute = new ResultDataAttribute()
+                    {
+                        DataSetOneAttribute = firstAttribute,
+                        DataSetTwoAttribute = secondAttribute,
+                        ComparisonScore = comparisonScore
+                    };
+
+                    resultData.ResultDataAttributes.Add(attribute);
+                }
+            }
+
+            return resultData;
         }
     }
 }
