@@ -7,6 +7,6 @@ namespace RecordLinkageEngine.Core.Interfaces
 {
     public interface IResultWriter
     {
-        void WriteResult(ResultData resultData);
+        void WriteResult(ResultDataSet resultData);
     }
 }

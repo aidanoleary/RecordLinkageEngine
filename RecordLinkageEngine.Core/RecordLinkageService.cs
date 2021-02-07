@@ -15,7 +15,7 @@ namespace RecordLinkageEngine.Core
         private IResultWriter resultWriter;
 
         public RecordLinkageService(IDataSetReader dataSetOneReader, IDataSetReader dataSetTwoReader, IResultWriter resultWriter)
-            : this(new DataSetComparers.DataSetComparer(), dataSetOneReader, dataSetTwoReader, resultWriter)
+            : this(new DataSetComparer(), dataSetOneReader, dataSetTwoReader, resultWriter)
         {
         }
 
@@ -31,8 +31,8 @@ namespace RecordLinkageEngine.Core
         {
             InputDataSet dataSetOne = dataSetOneReader.ReadDataSet();
             InputDataSet dataSetTwo = dataSetTwoReader.ReadDataSet();
-            ResultData resultData = dataComparer.CompareData(dataSetOne, dataSetTwo);
-            resultWriter.WriteResult(resultData);
+            ResultDataSet resultDataSet = dataComparer.CompareData(dataSetOne, dataSetTwo);
+            resultWriter.WriteResult(resultDataSet);
         }
 
     }
