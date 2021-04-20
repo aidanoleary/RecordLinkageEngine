@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RecordLinkageEngine.Core.Models
+namespace RecordLinkageEngine.Core.Models.OutputData
 {
     public class ResultDataSet
     {

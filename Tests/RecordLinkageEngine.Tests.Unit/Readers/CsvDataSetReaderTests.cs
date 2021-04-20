@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RecordLinkageEngine.Core.Models;
+using RecordLinkageEngine.Core.Models.InputData;
 using RecordLinkageEngine.Readers;
 using System;
 using System.Collections.Generic;

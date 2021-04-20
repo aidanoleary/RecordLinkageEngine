@@ -1,6 +1,6 @@
 ﻿using FuzzyStringMatching;
 using RecordLinkageEngine.Core.Interfaces;
-using RecordLinkageEngine.Core.Models;
+using RecordLinkageEngine.Core.Models.InputData;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +16,7 @@ namespace RecordLinkageEngine.Core.AttributeComparers
             this.fuzzyStringMatcher = new FuzzyStringMatchingService();
         }
 
-        public double CompareAttributes(DataAttribute attributeOne, DataAttribute attributeTwo)
+        public double CompareAttributes(InputDataAttribute attributeOne, InputDataAttribute attributeTwo)
         {
             string firstValue = attributeOne.DataValue;
             string secondValue = attributeTwo.DataValue;

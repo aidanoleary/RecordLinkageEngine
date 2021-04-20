@@ -1,6 +1,8 @@
 ﻿using RecordLinkageEngine.Core.AttributeComparers;
 using RecordLinkageEngine.Core.Interfaces;
 using RecordLinkageEngine.Core.Models;
+using RecordLinkageEngine.Core.Models.InputData;
+using RecordLinkageEngine.Core.Models.OutputData;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,7 +31,7 @@ namespace RecordLinkageEngine.Core.DataSetComparers
 
             Parallel.ForEach(dataSetOne.DataRows, (dataSetOneRow) =>
             {
-                foreach(DataRow dataSetTwoRow in dataSetTwo.DataRows)
+                foreach(InputDataRow dataSetTwoRow in dataSetTwo.DataRows)
                 {
                     ResultData resultData = CompareAttributes(dataSetOneRow.DataAttributes, dataSetTwoRow.DataAttributes);
                     resultDataSet.ResultDataList.Add(resultData);
@@ -39,13 +41,13 @@ namespace RecordLinkageEngine.Core.DataSetComparers
             return resultDataSet;
         }
 
-        private ResultData CompareAttributes(List<DataAttribute> attributeSetOne, List<DataAttribute> attributeSetTwo)
+        private ResultData CompareAttributes(List<InputDataAttribute> attributeSetOne, List<InputDataAttribute> attributeSetTwo)
         {
             ResultData resultData = new ResultData();
 
-            foreach(DataAttribute firstAttribute in attributeSetOne)
+            foreach(InputDataAttribute firstAttribute in attributeSetOne)
             {
-                foreach(DataAttribute secondAttribute in attributeSetTwo)
+                foreach(InputDataAttribute secondAttribute in attributeSetTwo)
                 {
                     if (firstAttribute.DataType != secondAttribute.DataType)
                     {

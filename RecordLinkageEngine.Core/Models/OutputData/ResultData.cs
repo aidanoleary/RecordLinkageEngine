@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RecordLinkageEngine.Core.Models
+namespace RecordLinkageEngine.Core.Models.OutputData
 {
     public class ResultData
     {

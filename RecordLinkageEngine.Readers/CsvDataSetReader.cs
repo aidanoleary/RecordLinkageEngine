@@ -1,5 +1,5 @@
 ﻿using RecordLinkageEngine.Core.Interfaces;
-using RecordLinkageEngine.Core.Models;
+using RecordLinkageEngine.Core.Models.InputData;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,13 +27,13 @@ namespace RecordLinkageEngine.Readers
             return dataSet;
         }
 
-        private List<DataRow> AddRows(string[] csvLines)
+        private List<InputDataRow> AddRows(string[] csvLines)
         {
-            List<DataRow> dataRows = new List<DataRow>();
+            List<InputDataRow> dataRows = new List<InputDataRow>();
 
             foreach (string csvRow in csvLines)
             {
-                DataRow currentRow = new DataRow();
+                InputDataRow currentRow = new InputDataRow();
 
                 currentRow.DataAttributes = AddAttributes(csvRow);
                 dataRows.Add(currentRow);
@@ -42,14 +42,14 @@ namespace RecordLinkageEngine.Readers
             return dataRows;
         }
 
-        private List<DataAttribute> AddAttributes(string csvRow)
+        private List<InputDataAttribute> AddAttributes(string csvRow)
         {
-            List<DataAttribute> attributes = new List<DataAttribute>();
+            List<InputDataAttribute> attributes = new List<InputDataAttribute>();
 
             string[] columns = csvRow.Split(delimiter);
             foreach (string column in columns)
             {
-                DataAttribute currentAttribute = new DataAttribute()
+                InputDataAttribute currentAttribute = new InputDataAttribute()
                 {
                     DataType = typeof(string),
                     DataValue = column

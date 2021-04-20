@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RecordLinkageEngine.Core.Models
+namespace RecordLinkageEngine.Core.Models.InputData
 {
     public class InputDataSet
     {
-        public List<DataRow> DataRows { get; set; }
+        public List<InputDataRow> DataRows { get; set; }
 
         public InputDataSet()
         {
-            this.DataRows = new List<DataRow>();
+            DataRows = new List<InputDataRow>();
         }
     }
 }

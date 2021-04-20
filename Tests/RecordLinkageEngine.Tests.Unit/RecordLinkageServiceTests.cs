@@ -3,6 +3,7 @@ using Moq;
 using RecordLinkageEngine.Core;
 using RecordLinkageEngine.Core.Interfaces;
 using RecordLinkageEngine.Core.Models;
+using RecordLinkageEngine.Core.Models.InputData;
 using System;
 using System.Collections.Generic;
 using System.Text;
